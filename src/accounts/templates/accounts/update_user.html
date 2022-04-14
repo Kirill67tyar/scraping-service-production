@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Настройки{% endblock %}
+
+{% block content %}
+
+
+<figure class="text-center">
+    <div class="row">
+        <div class="col">
+            <h2 class="my-3">Настройки</h2>
+        </div>
+    </div>
+</figure>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <form action="." method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{form.as_p}}
+                <button type="submit" class="btn btn-primary" style="background-color: #114;">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <br>
+
+        <a class="btn btn-danger" href="#popup1">Удалить данные</a>
+
+    </div>
+</div>
+<br>
+<figure class="text-center">
+    <p>Не нашли нужный вам город или язык программирования?
+        Можете
+        <a data-bs-toggle="collapse" href="#collapsed" role="button" aria-expanded="false"
+           aria-controls="collapsed">
+            сообщить нам,
+        </a>
+        мы добавим их в список.
+    </p>
+</figure>
+<div class="collapse col-md-6 mx-auto" id="collapsed">
+
+    <form action="{% url 'accounts:contact' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            {{contact_form.as_p}}
+            <button type="submit" class="btn btn-primary" style="background-color: #114;">Отправить нам</button>
+        </div>
+    </form>
+    <br>
+
+</div>
+<!--<figure class="text-center">-->
+<!--    <p>Не нашли нужный вам город или язык программирования? Можете-->
+<!--        <a href="{# url 'accounts:contact' #}">сообщить нам,</a> мы добавим их в список.</p>-->
+<!--</figure>-->
+<!------------------------------------------------------------------------------->
+<div id="popup1" class="overlay">
+    <div class="popup">
+        <h2>Вы действительно хотите удалить данные с сайта?</h2>
+        <!--        <a class="close" href="#">&times;</a>-->
+        <div class="content">
+
+
+            <form action="{# url 'accounts:delete' #}" method="POST">
+                {% csrf_token %}
+                <div class="d-grid gap-6">
+                    <button type="submit" class="btn btn-danger my-3">Да</button>
+                </div>
+            </form>
+
+
+            <div class="d-grid gap-6">
+
+                <a class="close btn btn-primary" href="#">Нет</a>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!------------------------------------------------------------------------------->
+{% endblock %}

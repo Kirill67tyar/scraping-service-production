@@ -1,0 +1,74 @@
+{% url 'accounts:contact' as contact_url %}
+{% url 'accounts:update' as update_url %}
+{% url 'accounts:login' as login_url %}
+{% url 'accounts:registration' as registration_url %}
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #114; border-radius: 15px;">
+        <!--bg-light    style="background-color: #a46fa8;"  114  214-->
+        <div class="container-fluid">
+
+            <a class="navbar-brand mb-0 h1" href="{% url 'scraping:home' %}" id="brand">Job-Search
+                </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="%navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+                <ul class="navbar-nav justify-content-end">
+
+                    {% if user.is_authenticated %}
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == contact_url %} active {% endif %} " href="{% url 'accounts:contact' %}">
+                            &nbsp;<i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;Обратная связь</a>
+                    </li>
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == update_url %} active {% endif %} " href="{% url 'accounts:update' %}">
+                            &nbsp;<i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Настройки</a>
+                    </li>
+
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'accounts:logout' %}">
+                            &nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Выйти</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == registration_url %} active {% endif %} " href="{% url 'accounts:registration' %}">
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;
+
+                            Зарегистрироваться
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == login_url %} active {% endif %} " href="{% url 'accounts:login' %}">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Войти
+                        </a>
+                    </li>
+                    {% endif %}
+
+
+                </ul>
+
+
+
+
+
+
+                <!--                <form class="d-flex" action="https://www.google.com/search" method="GET">-->
+                <!--                    <input class="form-control me-2" type="search" placeholder="google" aria-label="google" name="q">-->
+                <!--                    <button class="btn btn-outline-success" type="submit">Search</button>-->
+                <!--                </form>-->
+
+        </div>
+    </nav>
+</div>
+
